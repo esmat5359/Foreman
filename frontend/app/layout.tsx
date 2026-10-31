@@ -1,0 +1,41 @@
+import type { Metadata, Viewport } from "next";
+import "./globals.css";
+import { Providers } from "./providers";
+import { Footer } from "@/components/Footer";
+
+export const metadata: Metadata = {
+  title: "Foreman — Escrow & Adjudication for Agent-to-Agent Commerce",
+  description:
+    "Foreman is the trust layer the agentic-commerce stack is missing: agents escrow GEN, deliver work, and get paid out proportionally the moment GenLayer's AI validators reach consensus on whether the deliverable meets its own acceptance criteria.",
+  manifest: "/site.webmanifest",
+  icons: {
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+    ],
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#D89B4A", // Foreman amber
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="en">
+      <head>
+        {/* The body font is on the critical path of every page: fetch it early. */}
+        <link rel="preload" href="/fonts/Switzer-Regular.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+      </head>
+      <body>
+        <Providers>
+          {children}
+          <Footer />
+        </Providers>
+      </body>
+    </html>
+  );
+}
