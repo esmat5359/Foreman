@@ -1,0 +1,20 @@
+networks:
+  # Studionet (the stable hosted GenLayer Studio, chain id 61999) is this
+  # project's deployment target, so it is also the default for
+  # `gltest tests/integration/`. It is pre-configured by gltest: the RPC is
+  # https://studio.genlayer.com/api and throw-away accounts are generated on
+  # every run (the live E2E suite funds them from the Studio faucet).
+  default: studionet
+
+  studionet: {}
+
+  # A local Studio / GLSim. `chain_type` makes gltest use the localnet chain
+  # definition instead of inheriting the default network's.
+  localnet:
+    url: "http://127.0.0.1:4000/api"
+    chain_type: localnet
+
+paths:
+  contracts: "contracts"
+
+environment: .env
